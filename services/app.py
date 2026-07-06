@@ -1,8 +1,14 @@
 ## IMPORT DATA ##
-## LOAD DATA ##
-## SAVE DATA ##
-## CLI ##
 
+## LOAD DATA ##
+def load_data():
+    pass
+## SAVE DATA ##
+def save_data():
+    pass
+
+
+## CLI ##
 def cli_run():
     try:
         while True:
@@ -23,11 +29,11 @@ def cli_run():
             choice = input("Enter a number----").strip()         
             
             if choice == "1":
-                pass
+                load_data()
 
                 # ADD #
             if choice == "2":
-                pass
+                save_data()
 
                 # SEARCH #
             if choice == "3":
@@ -35,20 +41,21 @@ def cli_run():
 
                 # UPDATE #
             if choice == "4":
-                pass
+                save_data()
 
                 # DELETE #
             if choice == "5":
-                pass
+                save_data()
 
             if choice == "6":
-                pass
+                save_data()
 
             if choice == "7":
-                pass
+                load_data()
 
             if choice == "8":
-                pass
+                save_data()
+                break
 
 
     finally:
