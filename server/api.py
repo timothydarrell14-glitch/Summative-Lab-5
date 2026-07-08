@@ -1,35 +1,64 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify
+import json
+
+products = []
+with open("data/products.json", "r") as f:
+    products = json.load(f)
 
 app = Flask(__name__)
+from services import products
+
+@app.route("/")
+def home():
+    return jsonify({
+        "all_products" : "/products",
+        "single_product" : "/product/(product name/ barcode)",
+    })
 
 #GET
-@app.route("/inventory", methods=["GET"])
+@app.route("/products", methods=["GET"])
 def all_products():
-    pass
+    return jsonify(products)
 
 
 #GET_SINGLE
-@app.route("/inventory/<int:id>", methods=["GET"])
-def get_product():
-    pass
-
+@app.route("/product/<str:key>", methods=["GET"])
+def get_product(key):
+        for product in products:
+            if product['product_name'] or product['barcode'] == key:
+                return product
 
 #POST
-@app.route("/inventory", methods=["POST"])
-def add_product():
-    pass
+@app.route("/product", methods=["POST"])
+def add_product(barcode, name, quantity, brand, category, inventory):
+    products.append({
+        "barcode": barcode,
+        "product_name": name,
+        "quantity": quantity,
+        "brands" : brand,
+        "category" : category,
+        "inventory": inventory,
+        }
+    )
+    return products
 
 
-#PATCH
-@app.route("/inventory/<int:id>", methods=["PATCH"])
-def update_product():
-    pass
-
+# PATCH
+@app.route("/products/<str:key>", methods=["PATCH"])
+def update_product(key, change, update):
+        for product in products:
+            if product['product_name'] or product['barcode'] == key:
+                print(product)
+                product[change] = update
+                return product
 
 #DELETE
-@app.route("/inventory/<int:id>", methods=["DELETE"])
-def delete_product():
-    pass
+@app.route("/products/<str:key>", methods=["DELETE"])
+def delete_product(key):
+        for product in products:
+            if product['product_name'] or product['barcode'] == key:
+                products.pop(product)
+                return products
 
 if __name__ == "__main__":
     app.run(debug=True)

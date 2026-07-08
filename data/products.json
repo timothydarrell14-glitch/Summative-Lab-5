@@ -1,0 +1,162 @@
+[
+    {
+        "barcode": "3017620422003",
+        "product_name": "Nutella",
+        "quantity": "350 g",
+        "brands": "Ferrero",
+        "category": "Chocolate Spread",
+        "inventory": 42
+    },
+    {
+        "barcode": "5449000000996",
+        "product_name": "Coca-Cola Original Taste",
+        "quantity": "330 ml",
+        "brands": "Coca-Cola",
+        "category": "Soft Drink",
+        "inventory": 128
+    },
+    {
+        "barcode": "7622210449283",
+        "product_name": "Oreo Original",
+        "quantity": "154 g",
+        "brands": "Oreo",
+        "category": "Biscuits",
+        "inventory": 56
+    },
+    {
+        "barcode": "5000159484695",
+        "product_name": "KitKat 4 Finger",
+        "quantity": "41.5 g",
+        "brands": "Nestlé",
+        "category": "Chocolate Bar",
+        "inventory": 91
+    },
+    {
+        "barcode": "7613036243685",
+        "product_name": "Nescafé Classic",
+        "quantity": "200 g",
+        "brands": "Nestlé",
+        "category": "Coffee",
+        "inventory": 37
+    },
+    {
+        "barcode": "8000500037565",
+        "product_name": "Kinder Bueno",
+        "quantity": "43 g",
+        "brands": "Ferrero",
+        "category": "Chocolate Bar",
+        "inventory": 74
+    },
+    {
+        "barcode": "3017760422002",
+        "product_name": "Kinder Chocolate",
+        "quantity": "100 g",
+        "brands": "Ferrero",
+        "category": "Chocolate Bar",
+        "inventory": 49
+    },
+    {
+        "barcode": "5000112637927",
+        "product_name": "Fanta Orange",
+        "quantity": "500 ml",
+        "brands": "Fanta",
+        "category": "Soft Drink",
+        "inventory": 115
+    },
+    {
+        "barcode": "5000112546410",
+        "product_name": "Sprite Lemon-Lime",
+        "quantity": "500 ml",
+        "brands": "Sprite",
+        "category": "Soft Drink",
+        "inventory": 98
+    },
+    {
+        "barcode": "7622300336738",
+        "product_name": "Cadbury Dairy Milk",
+        "quantity": "95 g",
+        "brands": "Cadbury",
+        "category": "Chocolate Bar",
+        "inventory": 63
+    },
+    {
+        "barcode": "8000500310422",
+        "product_name": "Tic Tac Fresh Mint",
+        "quantity": "49 g",
+        "brands": "Tic Tac",
+        "category": "Mint Candy",
+        "inventory": 84
+    },
+    {
+        "barcode": "7613287407218",
+        "product_name": "Maggi Chicken Noodles",
+        "quantity": "70 g",
+        "brands": "Maggi",
+        "category": "Instant Noodles",
+        "inventory": 156
+    },
+    {
+        "barcode": "7613035974689",
+        "product_name": "Milo",
+        "quantity": "400 g",
+        "brands": "Nestlé",
+        "category": "Chocolate Malt Drink",
+        "inventory": 45
+    },
+    {
+        "barcode": "5000159461122",
+        "product_name": "Smarties",
+        "quantity": "38 g",
+        "brands": "Nestlé",
+        "category": "Candy",
+        "inventory": 72
+    },
+    {
+        "barcode": "8076809513759",
+        "product_name": "Barilla Spaghetti No.5",
+        "quantity": "500 g",
+        "brands": "Barilla",
+        "category": "Pasta",
+        "inventory": 39
+    },
+    {
+        "barcode": "9300675001234",
+        "product_name": "Pringles Original",
+        "quantity": "165 g",
+        "brands": "Pringles",
+        "category": "Potato Crisps",
+        "inventory": 68
+    },
+    {
+        "barcode": "5900951254127",
+        "product_name": "Lay's Classic",
+        "quantity": "170 g",
+        "brands": "Lay's",
+        "category": "Potato Crisps",
+        "inventory": 81
+    },
+    {
+        "barcode": "3228857000162",
+        "product_name": "Evian Natural Mineral Water",
+        "quantity": "1.5 L",
+        "brands": "Evian",
+        "category": "Bottled Water",
+        "inventory": 104
+    },
+    {
+        "barcode": "3046920029753",
+        "product_name": "Lipton Ice Tea Peach",
+        "quantity": "500 ml",
+        "brands": "Lipton",
+        "category": "Iced Tea",
+        "inventory": 57
+    },
+    {
+        "barcode": "5000171054678",
+        "product_name": "Schweppes Tonic Water",
+        "quantity": "330 ml",
+        "brands": "Schweppes",
+        "category": "Mixer",
+        "inventory": 33
+    }
+]
