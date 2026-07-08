@@ -1,12 +1,14 @@
-from flask import Flask, jsonify
-import json
-
-products = []
-with open("data/products.json", "r") as f:
-    products = json.load(f)
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
-from services import products
+
+from modules.product import (
+    add_product as create_product,
+    all_products,
+    delete_product as remove_product,
+    get_product,
+    update_product as change_product,
+)
 
 @app.route("/")
 def home():
@@ -17,48 +19,61 @@ def home():
 
 #GET
 @app.route("/products", methods=["GET"])
-def all_products():
-    return jsonify(products)
+def products():
+    return jsonify(all_products)
 
 
 #GET_SINGLE
-@app.route("/product/<str:key>", methods=["GET"])
-def get_product(key):
-        for product in products:
-            if product['product_name'] or product['barcode'] == key:
-                return product
+@app.route("/product/<string:key>", methods=["GET"])
+def single_product(key):
+    product = get_product(key)
+    if product is None:
+        return jsonify({"error": "Product not found"}), 404
+    return jsonify(product)
 
 #POST
 @app.route("/product", methods=["POST"])
-def add_product(barcode, name, quantity, brand, category, inventory):
-    products.append({
-        "barcode": barcode,
-        "product_name": name,
-        "quantity": quantity,
-        "brands" : brand,
-        "category" : category,
-        "inventory": inventory,
-        }
+def add_product():
+    data = request.get_json() or {}
+    required_fields = ["barcode", "product_name", "quantity", "brands", "category", "inventory"]
+    missing_fields = [field for field in required_fields if field not in data]
+
+    if missing_fields:
+        return jsonify({"error": "Missing fields", "fields": missing_fields}), 400
+
+    product = create_product(
+        data["barcode"],
+        data["product_name"],
+        data["quantity"],
+        data["brands"],
+        data["category"],
+        data["inventory"],
     )
-    return products
+    return jsonify(product), 201
 
 
 # PATCH
-@app.route("/products/<str:key>", methods=["PATCH"])
-def update_product(key, change, update):
-        for product in products:
-            if product['product_name'] or product['barcode'] == key:
-                print(product)
-                product[change] = update
-                return product
+@app.route("/products/<string:key>", methods=["PATCH"])
+def update_product(key):
+    data = request.get_json() or {}
+    change = data.get("field")
+    update = data.get("value")
+
+    if change is None or update is None:
+        return jsonify({"error": "Request must include 'field' and 'value'"}), 400
+
+    product = change_product(key, change, update)
+    if product is None:
+        return jsonify({"error": "Product not found"}), 404
+    return jsonify(product)
 
 #DELETE
-@app.route("/products/<str:key>", methods=["DELETE"])
+@app.route("/products/<string:key>", methods=["DELETE"])
 def delete_product(key):
-        for product in products:
-            if product['product_name'] or product['barcode'] == key:
-                products.pop(product)
-                return products
+    product = remove_product(key)
+    if product is None:
+        return jsonify({"error": "Product not found"}), 404
+    return jsonify({"deleted": product})
 
 if __name__ == "__main__":
     app.run(debug=True)

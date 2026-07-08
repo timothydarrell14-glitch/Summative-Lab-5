@@ -1,24 +1,25 @@
-## IMPORT DATA ##
-import json
-from pathlib import Path
-from services import all_products, add_product, update_product, delete_product, get_product
+from modules.product import (
+    add_product,
+    all_products,
+    delete_product,
+    get_product,
+    products,
+    save_products,
+    update_product,
+)
 
-curr_dir = Path(__file__).parent
-parent_dir = curr_dir.parent
-data = parent_dir /"data"/"products.json"
-# products = []
 
-# ## LOAD DATA ##
-# def load_data():
-#     global products
-#     with open(data, "r") as f:
-#         products = f.read()
-#         return products
-
-## SAVE DATA ##
 def save_data():
-    with open(data, "w", encoding="utf-8") as f:
-        json.dump(f)
+    save_products(products)
+
+
+def show_product(product):
+    if product is None:
+        print("Product not found.")
+        return
+
+    for key, value in product.items():
+        print(f"{key}: {value}")
 
 ## CLI ##
 def cli_run():
@@ -41,48 +42,59 @@ def cli_run():
             choice = input("Enter a number----").strip()         
             
             if choice == "1":
-                all_products()
+                for product in all_products():
+                    show_product(product)
+                    print()
 
                 # ADD #
-            if choice == "2":
-                global product
+            elif choice == "2":
                 barcode = input("Enter the barcode of the product-----").strip()
                 name = input("Enter the name of the product-----").strip()
                 quantity = input("Enter the quantity of the product-----").strip()
                 brand = input("Enter the brands of the product----").strip()
                 category = input("Enter the category of the product").strip()
                 inventory = int(input("Enter the current stock of the product"))
-                add_product(barcode, name, quantity, brand, category, inventory)
+                product = add_product(barcode, name, quantity, brand, category, inventory)
+                print("Product added:")
+                show_product(product)
                 
                 # SEARCH #
-            if choice == "3":
+            elif choice == "3":
                 key = input("Please enter barcode or name of the product---").strip()
-                get_product(key)
+                show_product(get_product(key))
 
                 # UPDATE #
-            if choice == "4":
+            elif choice == "4":
                 key = input("Please enter barcode or name of the product---").strip()
                 change = input("Please enter what you would like to change about the product---").strip()
-                update = input("Please enter change to be implemented----").strip
-                update_product(key, change, update)
-                save_data()
+                update = input("Please enter change to be implemented----").strip()
+                product = update_product(key, change, update)
+                print("Product updated:")
+                show_product(product)
 
                 # DELETE #
-            if choice == "5":
-                key = input("Please enter the name or barcode of the product to delete")
-                delete_product(key)
-                save_data()
+            elif choice == "5":
+                key = input("Please enter the name or barcode of the product to delete").strip()
+                product = delete_product(key)
+                if product is None:
+                    print("Product not found.")
+                else:
+                    print("Product deleted.")
 
-            if choice == "6":
+            elif choice == "6":
                 key = input("Please enter name or barcode of the product----").strip()
-                return f"https://world.openfoodfacts.org/api/v3/product/{key}"
+                print(f"https://world.openfoodfacts.org/api/v3/product/{key}")
 
-            if choice == "7":
+            elif choice == "7":
                 save_data()
+                print("Data saved.")
 
-            if choice == "8":
+            elif choice == "8":
                 save_data()
                 break
+
+            else:
+                print("Please enter a number from 1 to 8.")
 
 
     finally:

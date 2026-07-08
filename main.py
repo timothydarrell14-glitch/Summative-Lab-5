@@ -1,4 +1,4 @@
-from services import app
+from services.app import cli_run
 
 if __name__ == "__main__":
-    app.run()
+    cli_run()
